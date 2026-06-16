@@ -1,0 +1,348 @@
+/* Header Stats */
+.header-stats .stat-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.stat-badge i {
+    color: var(--warning);
+}
+
+/* Study Container */
+.study-container {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+/* Progress */
+.study-progress {
+    margin-bottom: 32px;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.progress-label {
+    font-weight: 600;
+}
+
+.progress-text {
+    color: var(--text-gray);
+    font-weight: 500;
+}
+
+.progress-bar {
+    height: 8px;
+    background: var(--bg-light);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-light), var(--primary));
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+/* Flashcard */
+.flashcard-wrapper {
+    cursor: pointer;
+    margin-bottom: 24px;
+}
+
+.flashcard {
+    perspective: 1000px;
+    height: 420px;
+}
+
+.flashcard-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+.flashcard-inner.flipped {
+    transform: rotateY(180deg);
+}
+
+.flashcard-front,
+.flashcard-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    box-shadow: var(--shadow-lg);
+}
+
+.flashcard-front {
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: var(--white);
+}
+
+.flashcard-back {
+    background: var(--white);
+    border: 2px solid var(--primary);
+    transform: rotateY(180deg);
+}
+
+.card-content {
+    text-align: center;
+    width: 100%;
+}
+
+.card-label {
+    display: block;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.7;
+    margin-bottom: 16px;
+}
+
+.flashcard-front .card-label {
+    opacity: 0.8;
+}
+
+.card-text {
+    font-size: 28px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.flashcard-back .card-text {
+    color: var(--text-dark);
+}
+
+.card-hint {
+    font-size: 13px;
+    opacity: 0.6;
+}
+
+.flashcard-front .card-hint {
+    color: rgba(255,255,255,0.7);
+}
+
+.flashcard-back .card-hint {
+    color: var(--text-gray);
+}
+
+/* Study Controls */
+.study-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.control-center {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-gray);
+}
+
+.card-counter {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.divider {
+    color: var(--border);
+}
+
+/* Rating Section */
+.rating-section {
+    text-align: center;
+    padding: 20px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+}
+
+.rating-label {
+    font-size: 14px;
+    color: var(--text-gray);
+    margin-bottom: 16px;
+}
+
+.rating-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.rating-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 16px;
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--white);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+.rating-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.rating-btn i {
+    font-size: 24px;
+}
+
+.rating-btn span {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.rating-btn.hard {
+    border-color: #fca5a5;
+}
+
+.rating-btn.hard:hover {
+    border-color: var(--danger);
+    background: rgba(239,68,68,0.05);
+}
+
+.rating-btn.hard i {
+    color: var(--danger);
+}
+
+.rating-btn.medium {
+    border-color: #fcd34d;
+}
+
+.rating-btn.medium:hover {
+    border-color: var(--warning);
+    background: rgba(245,158,11,0.05);
+}
+
+.rating-btn.medium i {
+    color: var(--warning);
+}
+
+.rating-btn.easy {
+    border-color: #6ee7b7;
+}
+
+.rating-btn.easy:hover {
+    border-color: var(--success);
+    background: rgba(16,185,129,0.05);
+}
+
+.rating-btn.easy i {
+    color: var(--success);
+}
+
+.rating-btn.very-easy {
+    border-color: #93c5fd;
+}
+
+.rating-btn.very-easy:hover {
+    border-color: #3b82f6;
+    background: rgba(59,130,246,0.05);
+}
+
+.rating-btn.very-easy i {
+    color: #3b82f6;
+}
+
+/* Empty State */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.empty-state i {
+    font-size: 64px;
+    color: var(--success);
+    margin-bottom: 20px;
+}
+
+.empty-state h3 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.empty-state p {
+    color: var(--text-gray);
+    margin-bottom: 24px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .flashcard {
+        height: 320px;
+    }
+    
+    .card-text {
+        font-size: 22px;
+    }
+    
+    .study-controls {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .control-center {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .rating-buttons {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .header-stats {
+        margin-top: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .flashcard {
+        height: 260px;
+    }
+    
+    .flashcard-front,
+    .flashcard-back {
+        padding: 24px;
+    }
+    
+    .card-text {
+        font-size: 18px;
+    }
+}
+
+/* Import style của kho thẻ để dùng chung */
+@import url('khothe.css');
+
+/* Hoặc copy các style cần thiết từ khothe.css */

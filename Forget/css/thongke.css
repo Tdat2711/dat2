@@ -1,0 +1,218 @@
+/* Period Selector */
+.period-selector {
+    display: flex;
+    gap: 6px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 4px;
+}
+
+.period-btn {
+    padding: 6px 16px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-gray);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.period-btn:hover {
+    color: var(--text-dark);
+}
+
+.period-btn.active {
+    background: var(--primary);
+    color: var(--white);
+}
+
+/* Stats Cards (Color variants) */
+.stat-card.orange .stat-icon {
+    background: rgba(245,158,11,0.1);
+    color: var(--warning);
+}
+
+.stat-card.blue .stat-icon {
+    background: rgba(59,130,246,0.1);
+    color: #3b82f6;
+}
+
+.stat-card.green .stat-icon {
+    background: rgba(16,185,129,0.1);
+    color: var(--success);
+}
+
+.stat-card.purple .stat-icon {
+    background: rgba(79,70,229,0.1);
+    color: var(--primary);
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.stat-unit {
+    font-size: 14px;
+    color: var(--text-gray);
+    margin-left: 4px;
+}
+
+/* Charts Row */
+.charts-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.chart-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+}
+
+.chart-card h3 {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.chart-container {
+    position: relative;
+    height: 220px;
+}
+
+/* Deck Performance */
+.deck-performance {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+}
+
+.deck-performance h3 {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.deck-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.deck-perf-item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    align-items: center;
+    padding: 12px 16px;
+    background: var(--bg-light);
+    border-radius: var(--radius-sm);
+    transition: background 0.2s;
+}
+
+.deck-perf-item:hover {
+    background: var(--border);
+}
+
+.deck-perf-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+}
+
+.deck-perf-name .icon {
+    font-size: 20px;
+}
+
+.deck-perf-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.deck-perf-progress .bar {
+    flex: 1;
+    height: 6px;
+    background: var(--bg-light);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.deck-perf-progress .fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s;
+}
+
+.deck-perf-progress .fill.high {
+    background: var(--success);
+}
+
+.deck-perf-progress .fill.medium {
+    background: var(--warning);
+}
+
+.deck-perf-progress .fill.low {
+    background: var(--danger);
+}
+
+.deck-perf-stats {
+    text-align: center;
+}
+
+.deck-perf-stats .number {
+    font-weight: 600;
+}
+
+.deck-perf-stats .label {
+    font-size: 11px;
+    color: var(--text-gray);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .charts-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .deck-perf-item {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .period-selector {
+        margin-top: 12px;
+    }
+    
+    .deck-perf-item {
+        grid-template-columns: 1fr;
+        gap: 4px;
+        text-align: center;
+    }
+    
+    .deck-perf-name {
+        justify-content: center;
+    }
+    
+    .stat-card .stat-value {
+        font-size: 22px;
+    }
+}

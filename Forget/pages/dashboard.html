@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - ForgetMeNot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+    <div class="logo">
+        <i class="fas fa-brain"></i>
+        <span>ForgetMeNot</span>
+    </div>
+    <button class="sidebar-toggle" id="sidebarToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+</div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item active"><i class="fas fa-home"></i><span>Trang chủ</span></a>
+                <a href="khothe.html" class="nav-item"><i class="fas fa-layer-group"></i><span>Kho thẻ</span></a>
+                <a href="ontap.html" class="nav-item"><i class="fas fa-book-open-reader"></i><span>Ôn tập</span></a>
+                <a href="thongke.html" class="nav-item"><i class="fas fa-chart-line"></i><span>Thống kê</span></a>
+                <a href="congdong.html" class="nav-item"><i class="fas fa-users"></i><span>Cộng đồng</span></a>
+                <a href="caidat.html" class="nav-item"><i class="fas fa-cog"></i><span>Cài đặt</span></a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info" id="userInfo">
+                    <div class="user-avatar"><i class="fas fa-user"></i></div>
+                    <div class="user-details">
+                        <div class="user-name" id="userName">Người Dùng</div>
+                        <div class="user-email" id="userEmail">user@email.com</div>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i><span>Đăng xuất</span></button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Xin chào, <span id="welcomeName">Người Dùng</span>!</h1>
+                <p>Chào mừng bạn đến với ForgetMeNot - Học thông minh hơn mỗi ngày</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card"><div class="stat-icon orange"><i class="fas fa-fire"></i></div><div class="stat-info"><span class="stat-label">Streak hiện tại</span><strong class="stat-value" id="streakCount">0</strong><span class="stat-unit">ngày</span></div></div>
+                <div class="stat-card"><div class="stat-icon purple"><i class="fas fa-layer-group"></i></div><div class="stat-info"><span class="stat-label">Tổng bộ thẻ</span><strong class="stat-value" id="totalDecks">0</strong><span class="stat-unit">bộ</span></div></div>
+                <div class="stat-card"><div class="stat-icon green"><i class="fas fa-check-circle"></i></div><div class="stat-info"><span class="stat-label">Thẻ đã học</span><strong class="stat-value" id="totalCardsLearned">0</strong><span class="stat-unit">thẻ</span></div></div>
+                <div class="stat-card"><div class="stat-icon blue"><i class="fas fa-clock"></i></div><div class="stat-info"><span class="stat-label">Thời gian học</span><strong class="stat-value" id="totalTime">0</strong><span class="stat-unit">phút</span></div></div>
+            </div>
+
+            <div class="dashboard-body">
+                <div class="left-column">
+                    <div class="actions-grid">
+                        <div class="action-card"><div class="action-icon purple"><i class="fas fa-brain"></i></div><div class="action-content"><h3>Ôn tập ngay</h3><p>Hôm nay có <span id="dueCards">0</span> thẻ cần ôn</p><button class="btn btn-primary" id="reviewNowBtn">Bắt đầu học <i class="fas fa-arrow-right"></i></button></div></div>
+                        <div class="action-card"><div class="action-icon green"><i class="fas fa-robot"></i></div><div class="action-content"><h3>Tạo Flashcard</h3><p>Tải tài liệu lên, AI sẽ tạo flashcard</p><button class="btn btn-outline" id="aiCreateBtn">Tạo ngay <i class="fas fa-arrow-right"></i></button></div></div>
+                    </div>
+                    <div class="recent-decks">
+                        <div class="section-title"><h3>Bộ thẻ gần đây</h3><a href="khothe.html" class="view-all">Xem tất cả <i class="fas fa-chevron-right"></i></a></div>
+                        <div class="decks-list" id="recentDecksList"></div>
+                    </div>
+                </div>
+
+                <div class="right-column">
+                    <div class="streak-banner">
+                        <h4>Tích Lũy Streak 🔥</h4>
+                        <p>Bấm điểm danh mỗi ngày để duy trì chuỗi học tập.</p>
+                        <div class="streak-info"><span>🔥 Streak:</span> <span id="streakCountBanner">0</span> <span>ngày</span></div>
+                        <button id="btnStreakCheck" class="btn-streak-check"><i class="fa-solid fa-bullseye"></i> Điểm danh hôm nay</button>
+                    </div>
+
+                    <div class="calendar-card">
+                        <div class="calendar-header"><i id="prevMonth" class="fa-solid fa-chevron-left"></i><span id="calendarHeaderTitle">Tháng 6 2026</span><i id="nextMonth" class="fa-solid fa-chevron-right"></i></div>
+                        <div id="calendarGridDates" class="calendar-grid"></div>
+                    </div>
+
+                    <div class="study-detail-card">
+                        <h4>📋 Thống kê ngày học</h4>
+                        <p>📆 Ngày: <span id="detailDate">Chưa chọn</span></p>
+                        <p>🔹 Trạng thái: <span id="detailCheckin">Chưa điểm danh</span></p>
+                        <p>📚 Bộ thẻ đã học: <span id="detailDecks">0</span></p>
+                        <p>🃏 Flashcard đã ôn: <span id="detailCards">0</span></p>
+                        <p>⏱️ Thời gian học: <span id="detailTime">0 phút</span></p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMessage"></span></div>
+
+    <script src="../js/auth.js"></script>
+    <script src="../js/calendar.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>

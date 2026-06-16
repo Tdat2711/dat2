@@ -1,0 +1,171 @@
+/* Settings Container */
+.settings-container {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.setting-section {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-bottom: 20px;
+}
+
+.setting-section h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+.setting-section h3 i {
+    color: var(--primary);
+    width: 20px;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--bg-light);
+}
+
+.setting-item:last-child {
+    border-bottom: none;
+}
+
+.setting-info {
+    flex: 1;
+    margin-right: 16px;
+}
+
+.setting-label {
+    display: block;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 2px;
+}
+
+.setting-desc {
+    font-size: 13px;
+    color: var(--text-gray);
+}
+
+/* Toggle Switch */
+.toggle {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 28px;
+    flex-shrink: 0;
+}
+
+.toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #cbd5e1;
+    border-radius: 28px;
+    transition: 0.3s;
+}
+
+.toggle-slider::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    transition: 0.3s;
+    box-shadow: var(--shadow-sm);
+}
+
+.toggle input:checked + .toggle-slider {
+    background: var(--primary);
+}
+
+.toggle input:checked + .toggle-slider::before {
+    transform: translateX(20px);
+}
+
+/* Select */
+.setting-item select {
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    background: var(--white);
+    cursor: pointer;
+    min-width: 140px;
+}
+
+/* Status Badge */
+.status-badge {
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status-badge.active {
+    background: rgba(16,185,129,0.1);
+    color: var(--success);
+}
+
+.status-badge.inactive {
+    background: rgba(239,68,68,0.1);
+    color: var(--danger);
+}
+
+/* Settings Actions */
+.settings-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.settings-actions .btn {
+    min-width: 140px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .setting-item {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+    
+    .setting-info {
+        margin-right: 0;
+    }
+    
+    .setting-item select {
+        width: 100%;
+    }
+    
+    .settings-actions {
+        flex-direction: column;
+    }
+    
+    .settings-actions .btn {
+        width: 100%;
+    }
+}

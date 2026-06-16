@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký - ForgetMeNot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/login.css">
+</head>
+<body class="auth-page">
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-logo">
+                <i class="fas fa-brain"></i>
+                <h2>ForgetMeNot</h2>
+            </div>
+            <div class="auth-title">
+                <h1>Tạo tài khoản mới</h1>
+                <p>Bắt đầu hành trình học tập của bạn</p>
+            </div>
+            
+            <form class="auth-form" id="registerForm">
+                <div class="form-group">
+                    <label for="fullname">Họ và tên</label>
+                    <input type="text" id="fullname" placeholder="Nguyễn Văn A" required>
+                    <span class="error-message" id="fullnameError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="your@email.com" required>
+                    <span class="error-message" id="emailError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mật khẩu (ít nhất 6 ký tự)</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                    <span class="error-message" id="passwordError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Xác nhận mật khẩu</label>
+                    <input type="password" id="confirmPassword" placeholder="••••••••" required>
+                    <span class="error-message" id="confirmError"></span>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">
+                    <i class="fas fa-user-plus"></i> Đăng Ký
+                </button>
+            </form>
+            
+            <div class="auth-footer">
+                <p>Đã có tài khoản? <a href="login.html">Đăng nhập</a></p>
+                <p style="margin-top: 12px;"><a href="../index.html" style="color: var(--text-gray); font-weight: 400;"><i class="fas fa-arrow-left"></i> Về trang chủ</a></p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/auth.js"></script>
+</body>
+</html>

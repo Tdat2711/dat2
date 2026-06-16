@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ôn Tập - ForgetMeNot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+<link rel="stylesheet" href="../css/khothe.css">
+<link rel="stylesheet" href="../css/ontap.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-brain"></i>
+                    <span>ForgetMeNot</span>
+                </div>
+                <button class="sidebar-toggle" id="sidebarToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Trang chủ</span>
+                </a>
+                <a href="khothe.html" class="nav-item">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Kho thẻ</span>
+                </a>
+                <a href="ontap.html" class="nav-item active">
+                    <i class="fas fa-book-open-reader"></i>
+                    <span>Ôn tập</span>
+                </a>
+                <a href="thongke.html" class="nav-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Thống kê</span>
+                </a>
+                <a href="congdong.html" class="nav-item">
+                    <i class="fas fa-users"></i>
+                    <span>Cộng đồng</span>
+                </a>
+                <a href="caidat.html" class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Cài đặt</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info" id="userInfo">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-details">
+                        <div class="user-name" id="userName">Người Dùng</div>
+                        <div class="user-email" id="userEmail">user@email.com</div>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Đăng xuất</span>
+                </button>
+            </div>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <div>
+                    <h1>Ôn Tập</h1>
+                    <p>Chọn bộ thẻ để bắt đầu ôn luyện</p>
+                </div>
+                <div class="header-stats">
+                    <span class="stat-badge">
+                        <i class="fas fa-layer-group"></i>
+                        <span id="totalDecksCount">0</span> bộ thẻ
+                    </span>
+                </div>
+            </div>
+
+            <!-- Danh sách bộ thẻ -->
+            <!-- Thay phần hiển thị danh sách bộ thẻ bằng grid -->
+<div class="decks-grid" id="decksGrid">
+    <!-- Các card sẽ được render ở đây -->
+</div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <i class="fas fa-layer-group"></i>
+                <h3>Chưa có bộ thẻ nào</h3>
+                <p>Hãy tạo bộ thẻ đầu tiên tại <a href="khothe.html" style="color:var(--primary);font-weight:600;">Kho thẻ</a></p>
+                <button class="btn btn-primary" onclick="window.location.href='khothe.html'">
+                    <i class="fas fa-plus"></i> Tạo bộ thẻ
+                </button>
+            </div>
+
+            <!-- Study Session (ẩn khi chưa chọn) -->
+            <div class="study-container" id="studyContainer" style="display:none;">
+                <!-- Progress -->
+                <div class="study-progress">
+                    <div class="progress-info">
+                        <span class="progress-label">Tiến độ</span>
+                        <span class="progress-text" id="progressText">0/0</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Flashcard -->
+                <div class="flashcard-wrapper" id="flashcardWrapper">
+                    <div class="flashcard" id="flashcard">
+                        <div class="flashcard-inner" id="flashcardInner">
+                            <div class="flashcard-front" id="cardFront">
+                                <div class="card-content">
+                                    <span class="card-label">Câu hỏi</span>
+                                    <div class="card-text" id="questionText">Click để xem câu hỏi</div>
+                                    <span class="card-hint">Nhấn vào thẻ để lật</span>
+                                </div>
+                            </div>
+                            <div class="flashcard-back" id="cardBack">
+                                <div class="card-content">
+                                    <span class="card-label">Đáp án</span>
+                                    <div class="card-text" id="answerText">Click để xem đáp án</div>
+                                    <span class="card-hint">Nhấn vào thẻ để lật lại</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <div class="study-controls">
+                    <button class="btn btn-outline" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i> Thẻ trước
+                    </button>
+                    <div class="control-center">
+                        <span class="card-counter" id="cardCounter">1 / 10</span>
+                        <span class="divider">|</span>
+                        <button class="btn btn-outline btn-sm" id="backToDeckBtn">
+                            <i class="fas fa-arrow-left"></i> Quay lại
+                        </button>
+                    </div>
+                    <button class="btn btn-primary" id="nextBtn">
+                        Thẻ tiếp <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+
+                <!-- Rating Buttons -->
+                <div class="rating-section" id="ratingSection">
+                    <p class="rating-label">Bạn nhớ thẻ này như thế nào?</p>
+                    <div class="rating-buttons">
+                        <button class="rating-btn hard" data-level="1">
+                            <i class="fas fa-frown"></i>
+                            <span>Quên</span>
+                        </button>
+                        <button class="rating-btn medium" data-level="2">
+                            <i class="fas fa-meh"></i>
+                            <span>Khó</span>
+                        </button>
+                        <button class="rating-btn easy" data-level="3">
+                            <i class="fas fa-smile"></i>
+                            <span>Tốt</span>
+                        </button>
+                        <button class="rating-btn very-easy" data-level="4">
+                            <i class="fas fa-laugh"></i>
+                            <span>Dễ</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage"></span>
+    </div>
+
+    <script src="../js/auth.js"></script>
+    <script src="../js/ontap.js"></script>
+</body>
+</html>

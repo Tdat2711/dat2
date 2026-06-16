@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cộng Đồng - ForgetMeNot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/congdong.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+    <div class="logo">
+        <i class="fas fa-brain"></i>
+        <span>ForgetMeNot</span>
+    </div>
+    <button class="sidebar-toggle" id="sidebarToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+</div>
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item"><i class="fas fa-home"></i><span>Trang chủ</span></a>
+                <a href="khothe.html" class="nav-item"><i class="fas fa-layer-group"></i><span>Kho thẻ</span></a>
+                <a href="ontap.html" class="nav-item"><i class="fas fa-book-open-reader"></i><span>Ôn tập</span></a>
+                <a href="thongke.html" class="nav-item"><i class="fas fa-chart-line"></i><span>Thống kê</span></a>
+                <a href="congdong.html" class="nav-item active"><i class="fas fa-users"></i><span>Cộng đồng</span></a>
+                <a href="caidat.html" class="nav-item"><i class="fas fa-cog"></i><span>Cài đặt</span></a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info" id="userInfo">
+                    <div class="user-avatar"><i class="fas fa-user"></i></div>
+                    <div class="user-details">
+                        <div class="user-name" id="userName">Người Dùng</div>
+                        <div class="user-email" id="userEmail">user@email.com</div>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i><span>Đăng xuất</span></button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="content-header">
+                <h1>Cộng Đồng</h1>
+                <p>Kết nối và học cùng nhau</p>
+            </div>
+
+            <div class="community-stats">
+                <div class="cstat-card"><i class="fas fa-users icon-blue"></i><div class="cstat-info"><span class="cstat-value">2</span><span class="cstat-label">bạn bè của tôi</span></div></div>
+                <div class="cstat-card"><i class="fas fa-fire icon-orange"></i><div class="cstat-info"><span class="cstat-value">3</span><span class="cstat-label">Thẻ học hôm nay</span></div></div>
+                <div class="cstat-card"><i class="fas fa-trophy icon-gold"></i><div class="cstat-info"><span class="cstat-value">365</span><span class="cstat-label">Streak dài nhất</span></div></div>
+                <div class="cstat-card"><i class="fas fa-layer-group icon-purple"></i><div class="cstat-info"><span class="cstat-value">0</span><span class="cstat-label">Bộ thẻ chia sẻ</span></div></div>
+            </div>
+
+            <div class="community-tabs">
+                <button class="ctab-btn active" data-tab="leaderboard">🏆 Bảng xếp hạng</button>
+                <button class="ctab-btn" data-tab="friends">👥 Bạn bè</button>
+                <button class="ctab-btn" data-tab="groups">👨‍👩‍👦 Nhóm</button>
+            </div>
+
+            <div class="tab-content">
+                <!-- Leaderboard -->
+                <div id="tab-leaderboard" class="tab-pane active">
+                    <div class="community-body">
+                        <div class="leaderboard">
+                            <div class="leaderboard-header"><h3><i class="fas fa-ranking-star"></i> Bảng xếp hạng</h3><span class="period-tag">Tuần này</span></div>
+                            <div class="podium">
+                                <div class="podium-item second"><div class="podium-avatar silver">TL</div><div class="podium-name">thuylinhh</div><div class="podium-score">4,210</div><div class="podium-rank">🥈</div></div>
+                                <div class="podium-item first"><div class="podium-avatar gold">MH</div><div class="podium-name">minh_hoc99</div><div class="podium-score">5,840</div><div class="podium-rank">👑</div></div>
+                                <div class="podium-item third"><div class="podium-avatar bronze">NT</div><div class="podium-name">namtran</div><div class="podium-score">3,890</div><div class="podium-rank">🥉</div></div>
+                            </div>
+                            <div class="rank-list" id="rankList"></div>
+                        </div>
+                        <div class="right-sidebar">
+                            <div class="my-stats-card">
+                                <div class="my-stats-header"><div class="my-avatar">ND</div><div><div class="my-name">Người Dùng</div><span class="my-rank">Hạng 14</span></div></div>
+                                <div class="my-stats-grid">
+                                    <div class="my-stat"><span class="my-stat-value">1</span><span class="my-stat-label">Streak</span></div>
+                                    <div class="my-stat"><span class="my-stat-value">840</span><span class="my-stat-label">Điểm</span></div>
+                                    <div class="my-stat"><span class="my-stat-value">5</span><span class="my-stat-label">Thẻ đã học</span></div>
+                                    <div class="my-stat"><span class="my-stat-value">2</span><span class="my-stat-label">Bộ thẻ</span></div>
+                                </div>
+                            </div>
+                            <div class="challenge-card">
+                                <h4><i class="fas fa-flag-checkered"></i> Thách thức tuần</h4>
+                                <div class="challenge-item"><div class="challenge-icon blue"><i class="fas fa-cards"></i></div><div class="challenge-info"><div class="challenge-name">Học 200 thẻ</div><div class="challenge-progress"><div class="progress-bar"><div class="progress-fill" style="width:22%"></div></div><span class="challenge-count">44/200</span></div></div></div>
+                                <div class="challenge-item"><div class="challenge-icon orange"><i class="fas fa-fire"></i></div><div class="challenge-info"><div class="challenge-name">Streak 7 ngày</div><div class="challenge-progress"><div class="progress-bar"><div class="progress-fill" style="width:14%"></div></div><span class="challenge-count">1/7</span></div></div></div>
+                            </div>
+                            <div class="activity-card">
+                                <h4><i class="fas fa-bolt"></i> Hoạt động gần đây</h4>
+                                <div class="activity-list" id="activityList"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Friends -->
+                <div id="tab-friends" class="tab-pane">
+                    <div class="friends-container">
+                        <div class="friends-header">
+                            <h3>Danh sách bạn bè</h3>
+                            <button class="btn btn-primary btn-sm" id="addFriendBtn"><i class="fas fa-user-plus"></i> Thêm bạn</button>
+                        </div>
+                        <div id="friendsList" class="friends-list"></div>
+                    </div>
+                </div>
+
+                <!-- Groups -->
+                <div id="tab-groups" class="tab-pane">
+                    <div class="groups-container">
+                        <div class="groups-header">
+                            <h3>Nhóm học tập</h3>
+                            <button class="btn btn-primary btn-sm" id="createGroupBtn"><i class="fas fa-plus"></i> Tạo nhóm</button>
+                        </div>
+                        <div id="groupsList" class="groups-list"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal Thêm bạn -->
+    <div class="modal-overlay" id="addFriendModal">
+        <div class="modal-container">
+            <div class="modal-header"><h3>Thêm bạn</h3><button class="modal-close" id="closeAddFriend">&times;</button></div>
+            <div class="modal-body">
+                <div class="form-group"><label>Email hoặc tên</label><input type="text" id="friendInput" placeholder="Nhập email hoặc tên"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="cancelAddFriend">Hủy</button>
+                <button class="btn btn-primary" id="confirmAddFriend">Thêm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Tạo nhóm -->
+    <div class="modal-overlay" id="createGroupModal">
+        <div class="modal-container">
+            <div class="modal-header"><h3>Tạo nhóm mới</h3><button class="modal-close" id="closeCreateGroup">&times;</button></div>
+            <div class="modal-body">
+                <div class="form-group"><label>Tên nhóm</label><input type="text" id="groupNameInput" placeholder="Nhập tên nhóm"></div>
+                <div class="form-group"><label>Mô tả</label><textarea id="groupDescInput" rows="2" placeholder="Mô tả nhóm"></textarea></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="cancelCreateGroup">Hủy</button>
+                <button class="btn btn-primary" id="confirmCreateGroup">Tạo</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"><i class="fas fa-check-circle"></i><span id="toastMessage"></span></div>
+
+    <script src="../js/auth.js"></script>
+    <script src="../js/congdong.js"></script>
+</body>
+</html>

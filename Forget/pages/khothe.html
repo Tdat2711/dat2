@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kho Thẻ - ForgetMeNot</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/khothe.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+    <div class="logo">
+        <i class="fas fa-brain"></i>
+        <span>ForgetMeNot</span>
+    </div>
+    <button class="sidebar-toggle" id="sidebarToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+</div>
+            
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Trang chủ</span>
+                </a>
+                <a href="khothe.html" class="nav-item active">
+                    <i class="fas fa-layer-group"></i>
+                    <span>Kho thẻ</span>
+                </a>
+                <a href="ontap.html" class="nav-item">
+                    <i class="fas fa-book-open-reader"></i>
+                    <span>Ôn tập</span>
+                </a>
+                <a href="thongke.html" class="nav-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Thống kê</span>
+                </a>
+                <a href="congdong.html" class="nav-item">
+                    <i class="fas fa-users"></i>
+                    <span>Cộng đồng</span>
+                </a>
+                <a href="caidat.html" class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Cài đặt</span>
+                </a>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-info" id="userInfo">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-details">
+                        <div class="user-name" id="userName">Người Dùng</div>
+                        <div class="user-email" id="userEmail">user@email.com</div>
+                    </div>
+                </div>
+                <button class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Đăng xuất</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-header">
+                <div>
+                    <h1>Kho Thẻ</h1>
+                    <p>Quản lý tất cả bộ thẻ của bạn</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-outline btn-ai" id="aiCreateBtn">
+                        <i class="fas fa-robot"></i> AI Generate
+                    </button>
+                    <button class="btn btn-primary" id="createDeckBtn">
+                        <i class="fas fa-plus"></i> Tạo bộ thẻ
+                    </button>
+                </div>
+            </div>
+
+            <!-- Toolbar -->
+            <div class="toolbar">
+                <div class="filter-tabs" id="filterTabs">
+                    <button class="filter-btn active" data-filter="all">Tất cả</button>
+                    <button class="filter-btn" data-filter="starred">Yêu thích</button>
+                    <button class="filter-btn" data-filter="recent">Gần đây</button>
+                    <button class="filter-btn" data-filter="due">Sắp đến hạn</button>
+                </div>
+                <div class="toolbar-actions">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Tìm kiếm bộ thẻ...">
+                    </div>
+                    <select id="sortSelect" class="sort-select">
+    <option value="due" selected>Ngày thi gần nhất</option>
+    <option value="newest">Mới nhất</option>
+    <option value="name">Theo tên</option>
+    <option value="cards">Số thẻ</option>
+    <option value="progress">Tiến độ</option>
+</select>
+                </div>
+            </div>
+
+            <!-- Decks Grid -->
+            <div class="decks-grid" id="decksGrid"></div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <i class="fas fa-layer-group"></i>
+                <h3>Chưa có bộ thẻ nào</h3>
+                <p>Bắt đầu tạo bộ thẻ đầu tiên của bạn ngay hôm nay!</p>
+                <button class="btn btn-primary" id="emptyCreateBtn">Tạo bộ thẻ mới</button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Create/Edit Deck Modal -->
+    <div class="modal-overlay" id="createModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 id="modalTitle">Tạo bộ thẻ mới</h3>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="deckForm">
+                    <div class="form-group">
+                        <label for="deckName">Tên bộ thẻ *</label>
+                        <input type="text" id="deckName" placeholder="Vd: Từ vựng IELTS" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="deckDescription">Mô tả</label>
+                        <textarea id="deckDescription" rows="3" placeholder="Mô tả về bộ thẻ này..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="deckCategory">Danh mục</label>
+                        <select id="deckCategory">
+                            <option value="general">Tổng hợp</option>
+                            <option value="english">Tiếng Anh</option>
+                            <option value="math">Toán học</option>
+                            <option value="science">Khoa học</option>
+                            <option value="history">Lịch sử</option>
+                            <option value="tech">Công nghệ</option>
+                            <option value="other">Khác</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="deckIcon">Biểu tượng</label>
+                        <select id="deckIcon">
+                            <option value="📚">📚 Sách</option>
+                            <option value="🔢">🔢 Toán</option>
+                            <option value="🧪">🧪 Khoa học</option>
+                            <option value="🌍">🌍 Địa lý</option>
+                            <option value="💻">💻 Lập trình</option>
+                            <option value="🎵">🎵 Âm nhạc</option>
+                            <option value="🏛️">🏛️ Lịch sử</option>
+                            <option value="🗣️">🗣️ Ngoại ngữ</option>
+                            <option value="📊">📊 Kinh tế</option>
+                            <option value="🎨">🎨 Nghệ thuật</option>
+                            <option value="⚽">⚽ Thể thao</option>
+                            <option value="🍕">🍕 Ẩm thực</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="deckExamDate">Ngày thi (tùy chọn)</label>
+                        <input type="date" id="deckExamDate">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="cancelModal">Hủy</button>
+                <button class="btn btn-primary" id="saveDeckBtn">Lưu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Flashcards Modal -->
+    <div class="modal-overlay" id="viewFlashcardsModal">
+        <div class="modal-container modal-large">
+            <div class="modal-header">
+                <h3 id="viewModalTitle">Flashcards</h3>
+                <button class="modal-close" id="closeViewModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+                    <span id="flashcardCount">0 thẻ</span>
+                    <button class="btn btn-primary btn-sm" id="addFlashcardBtn">
+                        <i class="fas fa-plus"></i> Thêm thẻ
+                    </button>
+                </div>
+                <div id="flashcardsList"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="closeViewModalBtn">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add/Edit Flashcard Modal -->
+    <div class="modal-overlay" id="flashcardModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h3 id="flashcardModalTitle">Thêm flashcard</h3>
+                <button class="modal-close" id="closeFlashcardModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="flashcardQuestion">Câu hỏi *</label>
+                    <input type="text" id="flashcardQuestion" placeholder="Nhập câu hỏi">
+                </div>
+                <div class="form-group">
+                    <label for="flashcardAnswer">Đáp án *</label>
+                    <textarea id="flashcardAnswer" rows="3" placeholder="Nhập đáp án"></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="cancelFlashcard">Hủy</button>
+                <button class="btn btn-primary" id="saveFlashcardBtn">Lưu</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Generate Modal -->
+    <div class="modal-overlay" id="aiModal">
+        <div class="modal-container modal-large">
+            <div class="modal-header">
+                <h3><i class="fas fa-robot"></i> AI Generate Flashcard</h3>
+                <button class="modal-close" id="closeAiModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p class="ai-desc">Tải lên file PDF, Word hoặc TXT để AI tự động tạo bộ thẻ và flashcard.</p>
+                
+                <div class="form-group">
+                    <label for="geminiApiKey">🔑 Gemini API Key</label>
+                    <input type="password" id="geminiApiKey" placeholder="Nhập API key của bạn">
+                    <small style="color: var(--text-gray); font-size: 12px;">
+                        Lấy key tại <a href="https://aistudio.google.com/apikey" target="_blank">Google AI Studio</a>
+                    </small>
+                </div>
+
+                <div class="drop-zone" id="dropZone">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p><strong>Kéo thả file vào đây</strong> hoặc nhấn để chọn</p>
+                    <span class="file-name" id="fileName">Chưa có file</span>
+                    <input type="file" id="fileInput" accept=".pdf,.docx,.txt" style="display:none">
+                </div>
+
+                <div class="form-group">
+                    <label for="aiDeckName">Tên bộ thẻ (tùy chọn)</label>
+                    <input type="text" id="aiDeckName" placeholder="Để trống để AI đặt tên">
+                </div>
+                <div class="form-group">
+                    <label for="aiDeckCategory">Danh mục</label>
+                    <select id="aiDeckCategory">
+                        <option value="general">Tổng hợp</option>
+                        <option value="english">Tiếng Anh</option>
+                        <option value="math">Toán học</option>
+                        <option value="science">Khoa học</option>
+                        <option value="history">Lịch sử</option>
+                        <option value="tech">Công nghệ</option>
+                        <option value="other">Khác</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="aiExamDate">Ngày thi (tùy chọn)</label>
+                    <input type="date" id="aiExamDate">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-outline" id="cancelAiModal">Hủy</button>
+                <button class="btn btn-primary" id="generateAiBtn">
+                    <i class="fas fa-wand-magic-sparkles"></i> Tạo bộ thẻ
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage"></span>
+    </div>
+    <script src="../js/auth.js"></script>
+    <script src="../js/khothe.js"></script>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/@google/generative-ai@0.21.0/dist/index.min.js"></script>
+</html>
